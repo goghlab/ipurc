@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { Facebook, ArrowRight, Globe, Users, Award, Sparkles } from "lucide-react"
+import { Facebook, ArrowRight, Globe, Users, Award, Sparkles, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useEffect, useState } from "react"
@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -19,35 +20,48 @@ export default function HomePage() {
   if (!mounted) return null
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white overflow-x-hidden font-sans">
+      {/* Top Banner */}
+      <div className="fixed top-0 w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center text-white text-sm z-50">
+        <div className="flex items-center space-x-2">
+          <Sparkles className="w-4 h-4" />
+          <span className="font-medium">限時優惠：商標註冊服務 8 折起</span>
+          <ArrowRight className="w-4 h-4" />
+        </div>
+      </div>
+
       {/* Enhanced Header with Glass Effect */}
-      <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100/50 transition-all duration-300">
+      <header className="fixed top-12 w-full z-40 bg-white border-b border-gray-100/50 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Enhanced Logo */}
             <Link href="/" className="flex items-center group">
-              <div className="relative w-14 h-14 mr-4">
-                {/* 3D Logo with Animation */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-600 to-purple-700 rounded-xl transform group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
-                  <div className="absolute inset-1 bg-gradient-to-tr from-white/20 to-transparent rounded-lg"></div>
-                  <div className="absolute top-2 left-2 w-3 h-3 bg-white rounded-full opacity-60"></div>
-                  <div className="absolute bottom-2 right-2 w-2 h-2 bg-white/40 rounded-full"></div>
-                  <div className="flex items-center justify-center h-full">
-                    <div className="text-white font-bold text-lg transform group-hover:scale-110 transition-transform duration-300">
-                      IP
-                    </div>
-                  </div>
-                </div>
-                {/* Glow Effect */}
-                <div className="absolute inset-0 bg-blue-500/20 rounded-xl blur-xl group-hover:bg-blue-500/40 transition-all duration-500"></div>
+              <div className="relative w-20 h-20 mr-4">
+                <img
+                  src="/111-1.png"
+                  alt="IPURC Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="text-sm text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
-                <div className="font-semibold">Universal Regional</div>
+                <div className="font-semibold text-base">Universal Regional</div>
                 <div className="text-xs text-gray-500">Consultants Limited</div>
               </div>
             </Link>
 
-            {/* Enhanced Navigation */}
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6 text-gray-700" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-700" />
+              )}
+            </button>
+
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               {[
                 { href: "/", label: "主頁" },
@@ -75,11 +89,50 @@ export default function HomePage() {
               </Link>
             </nav>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          <div
+            className={`md:hidden fixed inset-0 bg-white z-50 transform transition-transform duration-300 ease-in-out ${
+              isMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            <div className="pt-32 pb-6 px-4">
+              <div className="flex flex-col space-y-4">
+                {[
+                  { href: "/", label: "主頁" },
+                  { href: "/about", label: "關於" },
+                  { href: "/trademark", label: "商標註冊" },
+                  { href: "/accounting", label: "會計/審計" },
+                  { href: "/hk-company", label: "註冊香港公司" },
+                  { href: "/blog", label: "BLOG" },
+                  { href: "/contact", label: "聯絡我們" },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-gray-700 hover:text-blue-600 text-lg font-medium py-2 transition-colors duration-300"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <div className="pt-4 border-t border-gray-100">
+                  <Link
+                    href="#"
+                    className="flex items-center text-gray-700 hover:text-blue-600 text-lg font-medium py-2 transition-colors duration-300"
+                  >
+                    <Facebook className="w-5 h-5 mr-2" />
+                    Facebook
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
       {/* Stunning Hero Section with 3D Effects */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
         {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900">
           {/* Floating Particles */}
@@ -134,7 +187,7 @@ export default function HomePage() {
               </span>
             </h1>
             <p
-              className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto animate-fade-in-up"
+              className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto animate-fade-in-up font-medium"
               style={{ animationDelay: "0.6s" }}
             >
               保護您的品牌，建立市場優勢。專業團隊為您提供全球商標註冊服務。
@@ -177,7 +230,7 @@ export default function HomePage() {
                         {service.icon}
                       </span>
                       <div className="text-left">
-                        <div className="font-semibold">{service.title}</div>
+                        <div className="font-semibold text-lg">{service.title}</div>
                         <div className="text-sm text-blue-200">{service.subtitle}</div>
                       </div>
                     </div>
@@ -195,7 +248,7 @@ export default function HomePage() {
               className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold px-8 py-4 rounded-full shadow-2xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-110 group"
             >
               <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-              立即免費諮詢
+              <span className="font-medium">立即免費諮詢</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
           </div>
