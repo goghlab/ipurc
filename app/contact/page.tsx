@@ -9,46 +9,6 @@ import { Label } from "@/components/ui/label"
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
-                <div className="w-8 h-8 bg-white rounded transform rotate-45"></div>
-              </div>
-              <div className="text-sm text-gray-600">
-                <div>Universal Regional Consultants Limited</div>
-              </div>
-            </Link>
-
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 text-sm">
-                主頁
-              </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 text-sm">
-                關於
-              </Link>
-              <Link href="/trademark" className="text-gray-700 hover:text-blue-600 text-sm">
-                商標註冊
-              </Link>
-              <Link href="/accounting" className="text-gray-700 hover:text-blue-600 text-sm">
-                會計/審計
-              </Link>
-              <Link href="/hk-company" className="text-gray-700 hover:text-blue-600 text-sm">
-                註冊香港公司
-              </Link>
-              <Link href="/blog" className="text-gray-700 hover:text-blue-600 text-sm">
-                BLOG
-              </Link>
-              <Link href="/contact" className="text-blue-600 font-medium text-sm">
-                聯絡我們
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
-
       {/* Breadcrumb */}
       <div className="bg-gray-50 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,9 +50,13 @@ export default function ContactPage() {
                       <div>
                         <h3 className="font-semibold text-lg mb-2">辦公地址</h3>
                         <p className="text-gray-600">
-                          香港中環德輔道中19號
+                          環球註冊顧問有限公司
                           <br />
-                          環球大廈15樓1501室
+                          Universal Registered Consultant Limited
+                          <br />
+                          Rm 309 3/F POLY CENTRE
+                          <br />
+                          15 YIP FUNG STREET ON LOK TSUEN FANLING NT
                         </p>
                       </div>
                     </div>
